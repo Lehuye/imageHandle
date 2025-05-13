@@ -1,0 +1,43 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# VS Code settings
+.vscode/
+
+# macOS system files
+.DS_Store
+
+# Output / build
+build/
+dist/
+*.egg-info/
+
+zipped/
+
+# Upload folders (user-generated)
+uploads/
+outputs/
+*.bak
+*.tmp
+
+# Logs and temp
+*.log
+temp.png
+
+# Python environment
+pip-log.txt
+python-eggs/
+
+# Ignore env vars or secret files
+.env
+*.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/

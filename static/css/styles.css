@@ -1,0 +1,237 @@
+:root {
+    --var-header-height: 100px;
+    --var-ffooter-height: 30px;
+    --var-main-height: calc(100vh - var(--var-header-height) - var(--var-ffooter-height));
+    --var-border: 1px solid #575755;
+  
+    --input-style-height: 2rem;
+    --input-style-radius: 1rem;
+    --transition-fast: 0.3s ease;
+  
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* =================== LIGHT THEME =================== */
+  [theme="light"] {
+    --input-style-background-color: #f4f4f2;
+    --input-style-border: #ccc;
+    --button-bg: #ffffff;
+    --button-bg-hover: #e0e0e0;
+    --button-text: #333;
+  
+    --font-color: #333;
+    --font-reverse-color: #ababab;
+    --aside-color: #dcdcdc;
+    --background-color: #fdfdfd;
+    --background-dotted:
+      linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  
+    --dropzone-bg: rgba(0, 0, 0, 0.05);
+    --dropzone-hover-bg: rgba(0, 0, 0, 0.1);
+    --dropzone-border-color: #aaa;
+    --dropzone-hover-border-color: #000;
+    --dropzone-hover-shadow: rgba(0, 0, 0, 0.2);
+  }
+  
+  /* =================== DARK THEME =================== */
+  [theme="dark"] {
+    --input-style-background-color: #1f1f1f;
+    --input-style-border: #333;
+    --button-bg: #121212;
+    --button-bg-hover: #1a1a1a;
+    --button-text: #00e5ff;
+  
+    --font-color: #00e5ff;
+    --font-reverse-color: #00e5ff;
+    --aside-color: #121212;
+    --background-color: #0a0a0a;
+    --background-dotted:
+      linear-gradient(rgba(0, 229, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 229, 255, 0.1) 1px, transparent 1px);
+  
+    --dropzone-bg: rgba(255, 255, 255, 0.05);
+    --dropzone-hover-bg: rgba(0, 229, 255, 0.05);
+    --dropzone-border-color: var(--font-color);
+    --dropzone-hover-border-color: #00e5ff;
+    --dropzone-hover-shadow: #00e5ff88;
+  }
+  
+  /* =================== GLOBAL RESET =================== */
+  *,
+  h1, h2, h3, h4, h5, h6,
+  p, ul, li, ol, dl, dt, dd,
+  a, img, button, input {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+ h2{
+  padding:2rem;
+ }
+  
+  /* =================== BASIC STRUCTURE =================== */
+  body {
+    font-family: Inter, sans-serif;
+    color: var(--font-color);
+    background-color: var(--background-color);
+    background-image: var(--background-dotted);
+    background-size: 2px 2px, 2px 2px;
+  }
+  
+  header {
+    display: flex;
+    height: var(--var-header-height);
+    border-bottom: var(--var-border);
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  footer {
+    display: flex;
+    height: var(--var-ffooter-height);
+    border-top: var(--var-border);
+    align-items: center;
+    justify-content: center;
+  }
+  
+  main {
+    display: flex;
+    height: var(--var-main-height);
+    justify-content: space-between;
+  }
+  
+  aside {
+    /* flex: 1; */
+    /* min-width: 10vw; */
+    background-color: var(--aside-color);
+    color: var(--font-reverse-color);
+    padding: 1rem;
+    border-right: var(--var-border);
+  }
+  
+  section {
+    flex: 1;
+    min-width: 70vw;
+    padding: 1rem;
+  }
+  
+  /* =================== FORM ELEMENTS =================== */
+  input,
+  button {
+    width: 100%;
+    height: var(--input-style-height);
+    border-radius: var(--input-style-radius);
+    border: 1px solid var(--input-style-border);
+    background-color: var(--input-style-background-color);
+    color: var(--font-color);
+    padding: 0 1rem;
+    transition: var(--transition-fast);
+  }
+  
+  button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: var(--button-bg-hover);
+    box-shadow: 0 0 5px var(--button-text);
+  }
+  
+  /* =================== DROP ZONE =================== */
+  #dropZone {
+    border: 2px dashed var(--dropzone-border-color);
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    cursor: pointer;
+    color: var(--font-color);
+    background-color: var(--dropzone-bg);
+    transition: var(--transition-fast);
+  }
+  
+  #dropZone:hover {
+    background-color: var(--dropzone-hover-bg);
+    border-color: var(--dropzone-hover-border-color);
+    box-shadow: 0 0 10px var(--dropzone-hover-shadow);
+  }
+  
+  #fileInput {
+    display: none;
+  }
+  
+  .file-label {
+    font-size: 12px;
+    height: 2rem;
+    padding: 8px;
+  }
+  
+  .button-container,
+  .image-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .button-container {
+    display: grid;
+    gap: 8px;
+  }
+  
+  .toggle-button {
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--aside-color);
+    color: var(--font-reverse-color);
+  }
+  
+  .full-button {
+    width: 100%;
+  }
+
+  .converted-files-section{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .converted-files-section div{
+    flex: 1;
+  }
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  gap: 1rem;
+  height: calc(var(--var-main-height) - 120px);
+  overflow-y: auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.image-item {
+  width: 128px;
+  height: 128px;
+  border: 1px solid var(--font-color);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+}
+
+
+.image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.svgcolor{
+    fill:var(--font-color);
+}
