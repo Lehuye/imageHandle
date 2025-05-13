@@ -13,6 +13,11 @@
 ![](./imgs/3.webp)
 ![](./imgs/4.webp)
 
+# Usage
+
+Supports conversion between JPG, SVG, WEBP, and PNG formats.
+Supports combining multiple files into an animated GIF (currently only supports deleting images).
+
 # Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request.
