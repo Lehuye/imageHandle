@@ -63,27 +63,40 @@ class ImageConverter(QWidget):
         self.setLayout(layout)
 
     def select_and_convert(self):
-        file_path, _ = QFileDialog.getOpenFileName(self, "选择图片或SVG文件", "", "图像文件 (*.jpg *.jpeg *.png *.svg)")
-        if not file_path:
+        file_paths, _ = QFileDialog.getOpenFileNames(
+            self, "选择多个图片或SVG文件", "", "图像文件 (*.jpg *.jpeg *.png *.svg)"
+        )
+        if not file_paths:
             return
-
-        ext = file_path.rsplit('.', 1)[1].lower()
-        if not allowed_file(file_path):
-            QMessageBox.critical(self, "错误", "不支持的文件类型")
-            return
-
+    
         convert_type = self.format_combo.currentText()
-        base_name = os.path.splitext(os.path.basename(file_path))[0]
-        output_path = os.path.join(os.path.dirname(file_path), f"{base_name}.{convert_type}")
-
-        try:
-            if ext == 'svg':
-                convert_svg(file_path, output_path, convert_type)
-            else:
-                convert_image(file_path, output_path, convert_type)
-            QMessageBox.information(self, "成功", f"转换成功！\n输出文件: {output_path}")
-        except Exception as e:
-            QMessageBox.critical(self, "转换失败", str(e))
+        success_count = 0
+        failed_files = []
+    
+        for file_path in file_paths:
+            ext = file_path.rsplit('.', 1)[-1].lower()
+            if not allowed_file(file_path):
+                failed_files.append(file_path)
+                continue
+            
+            base_name = os.path.splitext(os.path.basename(file_path))[0]
+            output_path = os.path.join(os.path.dirname(file_path), f"{base_name}.{convert_type}")
+    
+            try:
+                if ext == 'svg':
+                    convert_svg(file_path, output_path, convert_type)
+                else:
+                    convert_image(file_path, output_path, convert_type)
+                success_count += 1
+            except Exception as e:
+                failed_files.append(file_path)
+    
+        message = f"成功转换 {success_count} 个文件。"
+        if failed_files:
+            message += f"\n失败文件:\n" + "\n".join(failed_files)
+            QMessageBox.warning(self, "部分失败", message)
+        else:
+            QMessageBox.information(self, "成功", message)
 
     def select_and_merge_gif(self):
         file_paths, _ = QFileDialog.getOpenFileNames(self, "选择多张图片合成GIF", "", "图像文件 (*.jpg *.jpeg *.png *.gif)")
