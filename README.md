@@ -13,6 +13,21 @@
 ![](./imgs/3.webp)
 ![](./imgs/4.webp)
 
+# Run
+
+Desktop APP 
+
+```bash
+python app_qt5.py
+```
+
+Web APP
+
+```bash
+python app_web.py
+```
+
+
 # Usage
 
 Supports conversion between JPG, SVG, WEBP, and PNG formats.
